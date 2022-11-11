@@ -1680,10 +1680,14 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$CONFIGURATION_BUILD_DIR/metadata-arm64.bin",
+				"$CONFIGURATION_BUILD_DIR/metadata-arm64e.bin",
+				"$CONFIGURATION_BUILD_DIR/metadata-i386.bin",
+				"$CONFIGURATION_BUILD_DIR/metadata-x86_64.bin",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ${PROJECT_DIR}/metadata-generator/build/bin\ncp ../../build-step-metadata-generator.py .\n./build-step-metadata-generator.py\n";
+			shellScript = "cd ${PROJECT_DIR}/metadata-generator/build/bin\ncp ../../build-step-metadata-generator.py .\n./build-step-metadata-generator.py\n\n# create temporary empty metadata files for XCode LD/LDPLUSPLUS flag analysis\nfor arch in $VALID_ARCHS\ndo :\n    touch \"$CONFIGURATION_BUILD_DIR/metadata-$arch.bin\"\ndone\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2236,7 +2240,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/NativeScript";
 				INFOPLIST_FILE = AppWithModules/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2271,7 +2275,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/NativeScript";
 				INFOPLIST_FILE = AppWithModules/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2344,7 +2348,7 @@
 					"$(SRCROOT)/TestFixtures",
 				);
 				INFOPLIST_FILE = TestRunner/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2393,7 +2397,7 @@
 					"$(SRCROOT)/TestFixtures",
 				);
 				INFOPLIST_FILE = TestRunner/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
